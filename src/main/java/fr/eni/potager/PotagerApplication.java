@@ -46,12 +46,14 @@ public class PotagerApplication implements CommandLineRunner {
 
         // Création de carrés
         Carre carre1 = new Carre(potager1, TypeSol.ARGILEUX, TypeExpo.SOLEIL, 100);
+        Carre carre2 = new Carre(potager1, TypeSol.SABLEUX, TypeExpo.MI_OMBRE, 200);
+        Carre carre3 = new Carre(potager1, TypeSol.ROCAILLEUX, TypeExpo.OMBRE, 300);
 
         // Création de plantes
-        Plante plante1 = new Plante("Carotte", TypePlante.RACINE);
+        Plante plante1 = new Plante("Carotte", "carottes des sables", 5, TypePlante.RACINE);
 
         // Création d'une plante dans un carré
-        Plantation plantation1 = new Plantation(15, LocalDate.now(),  LocalDate.now().plusDays(15));
+        Plantation plantation1 = new Plantation(15, LocalDate.now(),  LocalDate.now().plusDays(15), carre1, plante1);
 
 
         System.out.println("Potager: " + potager1.getNom() + " à " + potager1.getLocalisation() + " (" + potager1.getVille() + ")");
@@ -68,7 +70,15 @@ public class PotagerApplication implements CommandLineRunner {
         System.out.println("get potager : " + potagerManager.getById(potager1.getId()));
         System.out.println("get carre : " + carreManager.getById(carre1.getId()));
         System.out.println("get plante : " + planteManager.getById(plante1.getId()));
-        System.out.println(plantationManager.getById(plantation1.getId()));
+        System.out.println("get plantation : " + plantationManager.getById(plantation1.getId()));
 
+
+        System.out.println(potagerManager.getById(potager1.getId()));
+
+        System.out.println("succes ?" + potagerManager.addCarre(carre1, potager1));
+        System.out.println("succes ?" + potagerManager.addCarre(carre2, potager1));
+        System.out.println("succes ?" + potagerManager.addCarre(carre3, potager1));
+
+        System.out.println("surface restante potager 1 :" + potagerManager.getSurfaceRestante(potager1));
     }
 }

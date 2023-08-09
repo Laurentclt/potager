@@ -16,7 +16,6 @@ public class Potager{
     private String localisation;
     private String nom;
     private String ville;
-
     private Integer surface;
 
     public Potager(String localisation, String nom, String ville, Integer surface) {

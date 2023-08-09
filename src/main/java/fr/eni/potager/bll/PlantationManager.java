@@ -1,5 +1,6 @@
 package fr.eni.potager.bll;
 
+import fr.eni.potager.bo.Carre;
 import fr.eni.potager.bo.Plantation;
 import fr.eni.potager.dal.PlantationDAO;
 import jakarta.transaction.Transactional;
@@ -37,4 +38,16 @@ public class PlantationManager implements CrudManager<Plantation>{
     public void delete(Plantation plantation) {
         dao.delete(plantation);
     }
+
+    public Integer getSurface(Plantation plantation) {
+        Integer surfacePlante = plantation.getPlante().getSurface();
+        return surfacePlante * plantation.getQte();
+
+    }
+
+    public List<Plantation> getAllByCarre(Carre carre) {
+      return dao.findAllByCarre(carre);
+    };
+
+
 }
