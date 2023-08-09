@@ -1,10 +1,10 @@
 package fr.eni.potager.bo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -16,6 +16,10 @@ public class Plantation {
     private Integer qte;
     private Integer datePlantation;
     private Integer dateRecolte;
+    @ManyToOne
+    private Carre carre;
+    @OneToMany
+    private List<Plante> plantes;
 
 
     public Plantation(Integer qte, Integer datePlantation, Integer dateRecolte) {
