@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Data
 @NoArgsConstructor
-public class Potager extends Lieu{
+public class Potager{
     @Id
     @GeneratedValue
     private Integer id;
@@ -17,8 +17,10 @@ public class Potager extends Lieu{
     private String nom;
     private String ville;
 
-    public Potager(String localisation, String nom, String ville) {
-        super();
+    private Integer surface;
+
+    public Potager(String localisation, String nom, String ville, Integer surface) {
+        this.surface =surface;
         this.localisation = localisation;
         this.nom = nom;
         this.ville = ville;

@@ -3,7 +3,9 @@ package fr.eni.potager.bo;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -14,15 +16,15 @@ public class Plantation {
     @GeneratedValue
     private Integer id;
     private Integer qte;
-    private Integer datePlantation;
-    private Integer dateRecolte;
+    private LocalDate datePlantation;
+    private LocalDate dateRecolte;
     @ManyToOne
     private Carre carre;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private List<Plante> plantes;
 
 
-    public Plantation(Integer qte, Integer datePlantation, Integer dateRecolte) {
+    public Plantation(Integer qte, LocalDate datePlantation, LocalDate dateRecolte) {
         this.qte = qte;
         this.datePlantation = datePlantation;
         this.dateRecolte = dateRecolte;

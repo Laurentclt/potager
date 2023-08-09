@@ -15,4 +15,9 @@ public class Plante {
     private String nom;
     @Enumerated(EnumType.STRING)
     private TypePlante typePlante;
+
+    public Plante(String nom, TypePlante typePlante) {
+        this.nom = nom;
+        this.typePlante = typePlante;
+    }
 }

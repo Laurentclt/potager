@@ -1,29 +1,39 @@
 package fr.eni.potager.bll;
 
 import fr.eni.potager.bo.Plante;
+import fr.eni.potager.dal.PlanteDAO;
+import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 public class PlanteManager implements CrudManager<Plante>{
+    @Autowired
+    private PlanteDAO dao;
+
 
     @Override
-    public Plante saveOrUpdate() {
-        return null;
+    @Transactional
+    public Plante saveOrUpdate(Plante plante) {
+        return dao.save(plante);
     }
 
     @Override
+    @Transactional
     public List<Plante> getAll() {
-        return null;
+        return (List<Plante>) dao.findAll();
     }
 
     @Override
-    public Plante getById() {
-        return null;
+    @Transactional
+    public Plante getById(Integer id) throws BLLManagerException {
+        return dao.findById(id).orElseThrow(() -> new BLLManagerException("couldn't find this plante"));
     }
 
     @Override
-    public void delete() {
-
+    @Transactional
+    public void delete(Plante plante) {
+        dao.delete(plante);
     }
 }

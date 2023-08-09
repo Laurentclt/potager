@@ -4,13 +4,13 @@ import java.util.List;
 
 public interface CrudManager<T> {
 
-    T saveOrUpdate();
+    T saveOrUpdate(T t);
 
     List<T> getAll();
 
-    T getById();
+    T getById(Integer id) throws BLLManagerException;
 
-    void delete();
+    void delete(T t);
 
 
 }
