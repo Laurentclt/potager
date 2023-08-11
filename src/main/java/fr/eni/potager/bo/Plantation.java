@@ -29,4 +29,8 @@ public class Plantation {
         this.carre = carre;
         this.plante = plante;
     }
+
+    public Integer getSurface() {
+        return this.qte * this.plante.getSurface();
+    }
 }
