@@ -29,14 +29,14 @@ public class MainManager {
     private PotagerDAO potagerDAO;
 
 
-    @Transactional
-    public Carre addCarreIntoPotager(Carre carre) throws Exception {
-        Integer surfaceDispo = getSurfaceRestantePotager(carre.getPotager());
-        if (surfaceDispo < carre.getSurface()) {
-            throw new Exception("not enough space in potager");
+        @Transactional
+        public Carre addCarreIntoPotager(Carre carre) throws BLLManagerException {
+            Integer surfaceDispo = getSurfaceRestantePotager(carre.getPotager());
+            if (surfaceDispo < carre.getSurface()) {
+                throw new BLLManagerException("not enough space in potager");
+            }
+            return carreDAO.save(carre);
         }
-        return carreDAO.save(carre);
-    }
 
         @Transactional
         public Carre getCarreById (Integer id) throws BLLManagerException {
